@@ -183,8 +183,6 @@ let rightAttempts = 0;
 let TheDraw = document.querySelector(".hangman-draw");
 
 document.addEventListener("click", (e) => {
-  sound.play();
-  sound.volume = 0.3; 
   let TheStatus = false;
   if (e.target.className === "letter-box") {
     e.target.classList.add("clicked");
@@ -194,36 +192,34 @@ document.addEventListener("click", (e) => {
         TheStatus = true;
         guessSpans[index].innerHTML = chosenLetter;
         rightAttempts++;
-     
       }
-     
-  const totalLetters = lettersAndSpace.filter(l => l !== " ").length;
 
-if (rightAttempts === totalLetters) {
-  winGame();
-  lettersContainers.classList.add("finished");
-}
+      const totalLetters = lettersAndSpace.filter((l) => l !== " ").length;
+
+      if (rightAttempts === totalLetters) {
+        winGame();
+        lettersContainers.classList.add("finished");
+      }
     });
 
     if (!TheStatus) {
       WrongAttempts++;
       TheDraw.classList.add(`wrong-${WrongAttempts}`);
-     failSound.play();
-     
-   
+      failSound.play();
+
       if (WrongAttempts === 8) {
         endGame();
         lettersContainers.classList.add("finished");
       }
-    }
-    else
-    {
-        sucSound.play();
+    } else {
+      sucSound.play();
     }
   }
 });
 
 function endGame() {
+  sound.play();
+  sound.volume = 0.1;
   let div = document.createElement("div");
   div.append(`Game over , The Word Is ${randomValueValue}`);
   div.className = "popup";
@@ -231,6 +227,8 @@ function endGame() {
 }
 
 function winGame() {
+  sound.play();
+  sound.volume = 0.1;
   let div = document.createElement("div");
   div.append(`You Won , with ${WrongAttempts} Wrong attempts`);
   div.className = "right-popup";
