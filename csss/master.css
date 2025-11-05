@@ -1,0 +1,326 @@
+:root {
+  --main-color: #222;
+  --foor-px: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  margin: 20px auto;
+  width: 85%;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+hr {
+  border: 1px solid #eee;
+}
+.game-info {
+  display: flex;
+}
+.game-info .game-name {
+  flex: 1;
+}
+.game-info .category {
+  flex: 1;
+  text-align: right;
+}
+
+.game-info .category span {
+  text-transform: capitalize;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.hangman-draw {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 20px;
+  height: 324px;
+  min-width: 300px;
+}
+
+.hangman-draw .the-draw {
+  width: 60px;
+  height: 280px;
+  border-bottom: var(--foor-px) solid var(--main-color);
+  position: relative;
+  margin: auto;
+  left: -60px;
+  display: none;
+}
+.hangman-draw.wrong-1 .the-draw {
+  display: block;
+}
+.hangman-draw.wrong-2 .the-stand {
+  display: block;
+}
+.hangman-draw.wrong-3 .the-hang {
+  display: block;
+}
+.hangman-draw.wrong-4 .rope {
+  display: block;
+}
+.hangman-draw.wrong-5 .the-man .head {
+  display: block;
+}
+.hangman-draw.wrong-6 .the-man .body {
+  display: block;
+}
+
+.hangman-draw.wrong-7 .the-man .hands {
+  display: block;
+}
+
+.hangman-draw.wrong-8 .the-man .legs {
+  display: block;
+}
+
+.hangman-draw .the-stand {
+  display: none;
+}
+.hangman-draw .the-stand::before {
+  content: "";
+  position: absolute;
+  width: var(--foor-px);
+  background-color: var(--main-color);
+  height: 100%;
+  left: 50%;
+  margin-left: -2px;
+}
+.hangman-draw .the-hang {
+  display: none;
+}
+.hangman-draw .the-hang::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  background-color: var(--main-color);
+  height: var(--foor-px);
+  left: 30px;
+  top: 15px;
+}
+.hangman-draw .the-hang::after {
+  content: "";
+  position: absolute;
+  width: var(--foor-px);
+  background-color: var(--main-color);
+  height: 30px;
+  left: 130px;
+  top: 15px;
+}
+.hangman-draw .rope {
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  position: absolute;
+  left: 104px;
+  top: 40px;
+  border: var(--foor-px) dashed var(--main-color);
+  display: none;
+}
+
+.hangman-draw .the-man .head {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: var(--foor-px) solid var(--main-color);
+  position: absolute;
+  left: 112px;
+  top: 50px;
+  display: none;
+}
+
+.hangman-draw .the-man .body {
+  position: absolute;
+  background-color: var(--main-color);
+  width: var(--foor-px);
+  height: 100px;
+  top: 98px;
+  left: 135px;
+  display: none;
+}
+.hangman-draw .the-man .hands {
+  display: none;
+}
+.hangman-draw .the-man .hands::before {
+  left: 133px;
+  transform: rotate(-30deg);
+}
+.hangman-draw .the-man .hands::after {
+  left: 92px;
+  transform: rotate(30deg);
+}
+.hangman-draw .the-man .hands::before,
+.hangman-draw .the-man .hands::after {
+  content: "";
+  position: absolute;
+  background-color: var(--main-color);
+  width: 50px;
+  height: var(--foor-px);
+  top: 120px;
+}
+
+.hangman-draw .the-man .legs::before {
+  left: 114px;
+  transform: rotate(-110deg);
+}
+.hangman-draw .the-man .legs::after {
+  left: 90px;
+  transform: rotate(110deg);
+}
+.hangman-draw .the-man .legs::before,
+.hangman-draw .the-man .legs::after {
+  content: "";
+  position: absolute;
+  background-color: var(--main-color);
+  width: 70px;
+  height: var(--foor-px);
+  top: 226px;
+}
+.hangman-draw .the-man .legs {
+  display: none;
+}
+.letters {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  min-width: 400px;
+}
+.letters.finished {
+  pointer-events: none;
+}
+.letters .letter-box {
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  background-color: #009688;
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
+  line-height: 55px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.letters .letter-box.clicked {
+  background-color: var(--main-color);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.letter-guess {
+  margin: 10px auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 104px;
+}
+
+.letter-guess span {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #fdfdfd;
+  border-bottom: 3px solid var(--main-color);
+  transition: 0.3s;
+}
+
+@media (max-width: 787px) {
+  .letter-guess {
+    min-height: 60px;
+    padding: 10px;
+    flex-wrap: wrap;
+    max-width: 687px;
+  }
+  .letter-guess span {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 40px;
+    margin-top: 10px;
+  }
+}
+.letter-guess span.with-space {
+  border-bottom: none;
+  position: relative;
+}
+
+.letter-guess span.with-space::before {
+  content: "";
+  width: 20px;
+  height: 4px;
+  background-color: black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup,
+.right-popup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 700px;
+  padding: 60px 20px;
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: popupFade 0.6s forwards ease-out;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: rgba(244, 67, 54, 0.95); /* red tone */
+}
+
+.right-popup {
+  background-color: rgba(0, 150, 136, 0.95); /* teal tone */
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0%) scale(1);
+  }
+}
+.refresh{
+  
+  background-color: #009688;
+  padding: 50px 20px;
+  width: 50%;
+  top: 10%;
+  left: 10%;
+  text-align: center;
+  font-size: 30px;
+  border: 1px solid #ccc;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+    user-select: none;   
+}
