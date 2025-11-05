@@ -13,6 +13,7 @@ body {
 .container {
   margin: 20px auto;
   width: 85%;
+  user-select: none;
 }
 .row {
   display: flex;
