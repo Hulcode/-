@@ -309,8 +309,7 @@ hr {
     transform: translate(-50%, 0%) scale(1);
   }
 }
-.refresh{
-  
+.refresh {
   background-color: #009688;
   padding: 50px 20px;
   width: 50%;
@@ -323,5 +322,5 @@ hr {
   border-radius: 20px;
   cursor: pointer;
   margin-bottom: 10px;
-    user-select: none;   
+  user-select: none;
 }
